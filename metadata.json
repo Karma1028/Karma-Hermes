@@ -1,0 +1,6 @@
+{
+  "name": "KARMA-OS",
+  "description": "KARMA-OS is a personal AI operating system dashboard. Dark terminal-aesthetic mission control.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
