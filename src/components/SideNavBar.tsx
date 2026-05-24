@@ -24,7 +24,7 @@ export default function SideNavBar({ currentTab, setTab, syncInProgress, onSync 
         <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1 shadow-[0_0_8px_#bd9dff] animate-pulse"></div>
       </div>
 
-      <nav className="flex flex-col gap-4 flex-grow w-full px-2" id="sidebar-nav">
+      <nav className="flex flex-col gap-1 flex-grow w-full px-2" id="sidebar-nav">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = currentTab === item.id;
@@ -33,15 +33,19 @@ export default function SideNavBar({ currentTab, setTab, syncInProgress, onSync 
               key={item.id}
               id={`nav-btn-${item.id}`}
               onClick={() => setTab(item.id)}
-              className={`w-12 h-12 flex flex-col items-center justify-center rounded-lg transition-all duration-300 relative group cursor-pointer ${
+              className={`w-full flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 relative group cursor-pointer ${
                 isActive
-                  ? 'text-primary bg-primary/10 border-l-2 border-primary shadow-[inset_0_0_8px_rgba(189,157,255,0.05)]'
-                  : 'text-on-surface-variant hover:text-primary hover:bg-surface-container-high'
+                  ? 'text-primary bg-primary/10 border-l-2 border-primary shadow-[inset_0_0_8px_rgba(99,102,241,0.05)]'
+                  : 'text-on-surface-variant hover:text-primary hover:bg-surface-container-high border-l-2 border-transparent'
               }`}
               title={item.label}
             >
-              <Icon className={`w-5 h-5 transition-transform duration-300 ${isActive ? 'scale-110' : 'group-hover:scale-105'}`} />
-              <span className="absolute left-16 bg-surface-container-highest border border-outline-variant text-[10px] text-on-surface font-label-caps px-2.5 py-1 rounded shadow-md opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity whitespace-nowrap z-50">
+              <Icon className={`w-5 h-5 shrink-0 transition-transform duration-200 ${isActive ? 'scale-110' : 'group-hover:scale-105'}`} />
+              <span className={`hidden md:block text-[11px] font-mono font-semibold uppercase tracking-wider truncate transition-opacity duration-200 ${isActive ? 'opacity-100' : 'opacity-70 group-hover:opacity-100'}`}>
+                {item.label}
+              </span>
+              {/* Mobile tooltip only */}
+              <span className="md:hidden absolute left-full ml-3 bg-surface-container-highest border border-outline-variant text-[10px] text-on-surface font-mono px-2.5 py-1 rounded shadow-md opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity whitespace-nowrap z-50">
                 {item.label}
               </span>
             </button>
@@ -70,7 +74,7 @@ export default function SideNavBar({ currentTab, setTab, syncInProgress, onSync 
               className="w-full h-full object-cover"
             />
           </div>
-          <span className="absolute left-16 bottom-2 bg-surface-container-highest border border-outline-variant text-[10px] text-on-surface font-label-caps px-2.5 py-1 rounded shadow-md opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity whitespace-nowrap z-50">
+          <span className="md:hidden absolute left-full ml-3 bottom-2 bg-surface-container-highest border border-outline-variant text-[10px] text-on-surface font-mono px-2.5 py-1 rounded shadow-md opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity whitespace-nowrap z-50">
             operator@karma-os
           </span>
         </div>

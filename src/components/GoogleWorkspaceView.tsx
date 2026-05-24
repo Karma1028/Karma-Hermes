@@ -122,16 +122,19 @@ export default function GoogleWorkspaceView({
   const [pickerApiLoaded, setPickerApiLoaded] = useState(false);
 
   useEffect(() => {
-    // Dynamic loader for Google Picker GAPI Library
+    // Guard: only load if not already present
+    if (document.getElementById('gapi-script')) {
+      (window as any).gapi?.load('picker', { callback: () => setPickerApiLoaded(true) });
+      return;
+    }
     const script = document.createElement('script');
+    script.id = 'gapi-script';
     script.src = 'https://apis.google.com/js/api.js';
     script.async = true;
     script.defer = true;
     script.onload = () => {
       (window as any).gapi?.load('picker', {
-        callback: () => {
-          setPickerApiLoaded(true);
-        }
+        callback: () => setPickerApiLoaded(true)
       });
     };
     document.body.appendChild(script);
@@ -304,7 +307,7 @@ export default function GoogleWorkspaceView({
       const picker = new (window as any).google.picker.PickerBuilder()
         .addView((window as any).google.picker.ViewId.DOCS)
         .setOAuthToken(token)
-        .setDeveloperKey(firebaseConfig.apiKey)
+        .setDeveloperKey(import.meta.env.VITE_GOOGLE_PICKER_API_KEY || firebaseConfig.apiKey)
         .setCallback((data: any) => {
           if (data.action === (window as any).google.picker.Action.PICKED) {
             const file = data.docs[0];

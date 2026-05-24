@@ -147,7 +147,8 @@ export default function DashboardView({
       case 'RUNNING': return 'text-cyan-400 bg-cyan-500/10 border-cyan-500/20';
       case 'FAILED': return 'text-red-400 bg-red-400/10 border-red-400/20';
       case 'CRITICAL': return 'text-amber-400 bg-amber-500/10 border-amber-500/30 font-bold';
-      default: return 'text-purple-400 bg-purple-500/10 border-purple-500/20';
+      case 'SCHEDULED': return 'text-yellow-400 bg-yellow-500/10 border-yellow-500/20';
+      default: return 'text-slate-400 bg-slate-500/10 border-slate-500/20';
     }
   };
 
@@ -533,7 +534,7 @@ export default function DashboardView({
                 <div className="flex flex-col items-end">
                   <span className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border ${
                     agent.status === 'ONLINE' ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' :
-                    agent.status === 'ACTIVE' ? 'text-cyan-400 bg-cyan-500/10 border-cyan-500/20 pulse-dot' :
+                    agent.status === 'ACTIVE' ? 'text-cyan-400 bg-cyan-500/10 border-cyan-500/20' :
                     'text-amber-400 bg-amber-500/10 border-amber-500/20'
                   }`}>
                     {agent.status}

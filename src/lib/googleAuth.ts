@@ -160,7 +160,8 @@ export interface GoogleCalendarEvent {
 
 export const fetchGoogleEvents = async (token: string): Promise<GoogleCalendarEvent[]> => {
   try {
-    const response = await fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events?orderBy=startTime&singleEvents=true&maxResults=15', {
+    const timeMin = encodeURIComponent(new Date().toISOString());
+    const response = await fetch(`https://www.googleapis.com/calendar/v3/calendars/primary/events?orderBy=startTime&singleEvents=true&maxResults=15&timeMin=${timeMin}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     if (!response.ok) throw new Error(`Google Calendar fetch failed: ${response.statusText}`);

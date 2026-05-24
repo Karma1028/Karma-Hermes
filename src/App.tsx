@@ -214,7 +214,7 @@ export default function App() {
       <TopNavBar currentTab={currentTab} />
 
       {/* Main scrolling viewport */}
-      <main className="pl-16 md:pl-56 pt-20 px-4 md:px-8 select-none" id="app-main-viewport">
+      <main className="pl-16 md:pl-56 pt-20 pr-4 md:pr-8 select-none" id="app-main-viewport">
         
         {currentTab === 'dashboard' && (
           <DashboardView 

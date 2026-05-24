@@ -137,3 +137,8 @@
 body {
   background-color: #020617;
 }
+
+/* bg-solid-surface alias */
+.bg-solid-surface {
+  background-color: #020617;
+}
